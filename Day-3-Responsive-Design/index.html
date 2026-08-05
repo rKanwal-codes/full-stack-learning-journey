@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rukhsana Kanwal — Computer Engineering Student & Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E2A47;         
+    --ink-2:#123A5E;       
+    --paper-2:#EDEAE1;      
+    --line:#7FA8C9;       
+    --line-soft:rgba(127,168,201,0.35);
+    --copper:#C97B3D;       
+    --copper-dark:#A6612B;
+    --graphite:#20242B;    
+    --muted:#5B6472;
+    --white:#FFFFFF;
+    --radius:2px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--graphite);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  section{position:relative;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  .grid-bg{
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:36px 36px;
+    background-position:-1px -1px;
+  }
+  .grid-bg-dark{
+    background-color:var(--ink);
+    background-image:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size:36px 36px;
+  }
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .bracket{
+    position:relative;
+    border:1px solid var(--line-soft);
+    background:var(--white);
+  }
+  .bracket::before,.bracket::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    border:2px solid var(--copper);
+    opacity:0.9;
+  }
+  .bracket::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+  .bracket::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,244,238,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:0 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk'; font-weight:700; font-size:18px;
+  }
+  .logo .chip{
+    width:30px;height:30px;border:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono'; font-size:12px; font-weight:600;
+    position:relative;
+  }
+  .logo .chip::before,.logo .chip::after{
+    content:"";position:absolute;background:var(--ink);
+  }
+  .logo .chip::before{width:6px;height:1.5px;top:50%;left:-8px;transform:translateY(-50%);}
+  .logo .chip::after{width:6px;height:1.5px;top:50%;right:-8px;transform:translateY(-50%);}
+
+  nav.links{display:flex; gap:6px; align-items:center;}
+  nav.links a{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.06em;
+    text-transform:uppercase; padding:8px 14px; color:var(--muted);
+    border-bottom:2px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  nav.links a:hover{color:var(--ink); border-color:var(--copper);}
+  .status-pill{
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.05em;
+    color:var(--ink); border:1px solid var(--line-soft);
+    padding:6px 12px; text-transform:uppercase;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--copper);
+    animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  .burger{display:none; flex-direction:column; gap:4px; cursor:pointer; background:none; border:none;}
+  .burger span{width:22px;height:2px;background:var(--ink);}
+  .hero{
+    padding:150px 0 90px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.14em;
+    color:var(--copper-dark); text-transform:uppercase; margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--copper);}
+  .hero h1{
+    font-size:clamp(40px, 5.4vw, 72px);
+    line-height:1.02; font-weight:700; color:var(--ink);
+  }
+  .hero h1 .accent{color:var(--copper);}
+  .role-line{
+    font-family:'IBM Plex Mono'; font-size:15px; color:var(--muted);
+    margin-top:20px; line-height:1.7;
+  }
+  .role-line b{color:var(--ink); font-weight:600;}
+  .hero p.bio{
+    margin-top:20px; font-size:16px; line-height:1.75; color:var(--graphite); max-width:520px;
+  }
+  .tags-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px;}
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:12px; padding:6px 12px;
+    border:1px solid var(--line-soft); color:var(--ink-2); background:rgba(255,255,255,0.5);
+  }
+  .cta-row{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono'; font-size:13px; letter-spacing:0.03em;
+    padding:14px 26px; text-transform:uppercase; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--ink); transition:all .2s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--copper); border-color:var(--copper); color:var(--white);}
+  .btn-outline{background:transparent; color:var(--ink);}
+  .btn-outline:hover{border-color:var(--copper); color:var(--copper-dark);}
+  .schematic{
+    position:relative; width:100%; aspect-ratio:1/1; max-width:420px; margin:0 auto;
+  }
+  .schematic svg{width:100%; height:100%; overflow:visible;}
+  .pin-badge{
+    position:absolute; background:var(--white); border:1px solid var(--line-soft);
+    border-radius:50%; width:56px; height:56px; display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono'; font-size:11px; font-weight:600; color:var(--ink);
+    box-shadow:0 4px 14px rgba(14,42,71,0.1);
+  }
+  .core-chip{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:44%; height:44%; background:var(--ink); color:var(--paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:'Space Grotesk'; font-weight:700; font-size:15px;
+    border:2px solid var(--copper);
+  }
+  .core-chip span{font-family:'IBM Plex Mono'; font-weight:400; font-size:9px; letter-spacing:0.1em; color:var(--line); margin-top:6px;}
+  .section-tag{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--copper-dark); display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .section-tag::before{content:"";width:20px;height:1px;background:var(--copper);}
+  .section-title{font-size:clamp(30px,4vw,46px); color:var(--ink); font-weight:700; margin-bottom:10px;}
+  .section-sub{color:var(--muted); font-size:15px; max-width:560px; line-height:1.6;}
+  .section-head{margin-bottom:52px;}
+  .about{padding:100px 0;}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;}
+  .about-text p{font-size:15.5px; line-height:1.85; color:var(--graphite); margin:0 0 16px;}
+  .spec-list{border-top:1px solid var(--line-soft);}
+  .spec-row{
+    display:grid; grid-template-columns:130px 1fr; gap:18px; padding:18px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .spec-row .k{font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; color:var(--copper-dark); letter-spacing:0.05em;}
+  .spec-row .v{font-size:14.5px; color:var(--graphite); line-height:1.6;}
+  .skills{padding:100px 0; background:var(--white); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);}
+  .skill-groups{display:grid; grid-template-columns:repeat(5,1fr); gap:0;}
+  .skill-group{padding:0 22px; border-left:1px solid var(--line-soft);}
+  .skill-group:first-child{padding-left:0; border-left:none;}
+  .skill-group h4{
+    font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--ink); margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--copper);
+  }
+  .skill-item{
+    display:flex; align-items:center; gap:8px; font-size:14px; color:var(--graphite);
+    padding:8px 0; border-bottom:1px dashed var(--line-soft);
+  }
+  .skill-item:last-child{border-bottom:none;}
+  .skill-item::before{content:"";width:6px;height:6px;background:var(--copper); flex-shrink:0;}
+  .projects{padding:100px 0;}
+  .project-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .project-card{padding:28px; display:flex; flex-direction:column; gap:14px; transition:transform .25s ease, box-shadow .25s ease;}
+  .project-card:hover{transform:translateY(-6px); box-shadow:0 18px 34px rgba(14,42,71,0.12);}
+  .project-top{display:flex; justify-content:space-between; align-items:flex-start;}
+  .project-code{font-family:'IBM Plex Mono'; font-size:11px; color:var(--copper-dark); letter-spacing:0.08em;}
+  .project-lang{font-family:'IBM Plex Mono'; font-size:11px; color:var(--muted); border:1px solid var(--line-soft); padding:3px 8px;}
+  .project-card h3{font-size:20px; color:var(--ink); font-weight:600; line-height:1.3;}
+  .pill-line{font-size:13.5px; line-height:1.6; color:var(--graphite);}
+  .pill-line b{color:var(--ink); font-family:'IBM Plex Mono'; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:4px; color:var(--copper-dark);}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px;}
+  .proj-tags span{font-family:'IBM Plex Mono'; font-size:10.5px; background:var(--paper-2); padding:4px 9px; color:var(--ink-2);}
+  .proj-links{display:flex; gap:16px; margin-top:auto; padding-top:14px; border-top:1px solid var(--line-soft);}
+  .proj-links a{font-family:'IBM Plex Mono'; font-size:12px; color:var(--ink); display:flex; align-items:center; gap:6px;}
+  .proj-links a:hover{color:var(--copper-dark);}
+  .certs{padding:100px 0;}
+  .cert-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:0;}
+  .cert-group{padding:0 22px; border-left:1px solid var(--line-soft);}
+  .cert-group:first-child{padding-left:0; border-left:none;}
+  .cert-group h4{
+    font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--ink); margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--copper);
+  }
+  .cert-item{padding:11px 0; border-bottom:1px dashed var(--line-soft);}
+  .cert-item:last-child{border-bottom:none;}
+  .cert-title{font-size:13.5px; font-weight:600; color:var(--graphite); line-height:1.4;}
+  .cert-meta{font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--muted); margin-top:3px; letter-spacing:0.03em;}
+  .experience{padding:100px 0; background:var(--white); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);}
+  .timeline{position:relative; margin-top:20px; padding-left:36px;}
+  .timeline::before{
+    content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px;
+    background:repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 12px);
+  }
+  .t-item{position:relative; padding-bottom:46px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-node{
+    position:absolute; left:-36px; top:2px; width:20px; height:20px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--copper); display:flex; align-items:center; justify-content:center;
+  }
+  .t-node::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--copper);}
+  .t-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;}
+  .t-head h4{font-size:18px; color:var(--ink); font-weight:600;}
+  .t-badge{
+    font-family:'IBM Plex Mono'; font-size:10px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--copper-dark); border:1px solid var(--line-soft); padding:2px 8px; margin-left:10px;
+    vertical-align:middle; font-weight:500;
+  }
+  .t-date{font-family:'IBM Plex Mono'; font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;}
+  .t-org{font-family:'IBM Plex Mono'; font-size:12.5px; color:var(--copper-dark); margin-top:4px;}
+  .t-desc{font-size:14px; color:var(--graphite); line-height:1.7; margin-top:10px; max-width:640px;}
+  .course-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; max-width:680px;}
+  .course-tags span{
+    font-family:'IBM Plex Mono'; font-size:10.5px; padding:4px 10px;
+    border:1px solid var(--line-soft); color:var(--ink-2); background:var(--paper);
+  }
+  .contact{padding:120px 0; text-align:center;}
+  .contact .section-tag{justify-content:center;}
+  .contact h2{font-size:clamp(30px,5vw,52px); color:var(--ink); font-weight:700; max-width:640px; margin:0 auto 30px;}
+  .contact h2 .accent{color:var(--copper);}
+  .contact-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:36px;}
+  .clink{
+    display:flex; align-items:center; gap:10px; border:1px solid var(--line-soft); padding:14px 22px;
+    font-family:'IBM Plex Mono'; font-size:13px; background:var(--white); transition:all .2s ease;
+  }
+  .clink:hover{border-color:var(--copper); color:var(--copper-dark); transform:translateY(-3px);}
+  footer{padding:34px 0; text-align:center; font-family:'IBM Plex Mono'; font-size:11.5px; color:var(--muted); border-top:1px solid var(--line-soft);}
+  @media (max-width:980px){
+    nav.links{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .schematic{margin-top:40px;}
+    .about-grid{grid-template-columns:1fr;}
+    .skill-groups{grid-template-columns:repeat(2,1fr); row-gap:30px;}
+    .skill-group:nth-child(2){border-left:1px solid var(--line-soft);}
+    .skill-group:nth-child(odd){border-left:none; padding-left:0;}
+    .cert-groups{grid-template-columns:1fr; row-gap:30px;}
+    .cert-group{border-left:none; padding-left:0;}
+    .project-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    .skill-groups{grid-template-columns:1fr;}
+    .skill-group{border-left:none !important; padding-left:0 !important;}
+    .status-pill{display:none;}
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><div class="chip">RK</div> Rukhsana Kanwal</div>
+    <nav class="links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="status-pill"><span class="dot"></span> Open to Internships</div>
+    <button class="burger" onclick="document.querySelector('nav.links').classList.toggle('mobile-open')"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<section id="home" class="hero grid-bg">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <div class="eyebrow">Sheet 01 / 07 — Profile</div>
+      <h1>Rukhsana<br><span class="accent">Kanwal</span></h1>
+      <div class="role-line">
+        <b>Computer Engineering Student</b> · Aspiring Software Developer<br>
+        Learning Full Stack Development · Exploring AI<br>
+        Multan, Punjab, Pakistan
+      </div>
+      <p class="bio">I build practical software with a strong grounding in Object-Oriented Programming and clean code — from desktop systems in C# to Python-powered tools and responsive web interfaces. Currently deepening my full-stack and AI skills through hands-on projects and internships.</p>
+      <div class="tags-row">
+        <span class="tag">C</span><span class="tag">C#</span><span class="tag">Python</span>
+        <span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">OOP</span>
+      </div>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="reveal in">
+      <div class="schematic">
+        <svg viewBox="0 0 420 420">
+          <line x1="210" y1="210" x2="60" y2="70" stroke="#7FA8C9" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <line x1="210" y1="210" x2="360" y2="70" stroke="#7FA8C9" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <line x1="210" y1="210" x2="40" y2="230" stroke="#7FA8C9" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <line x1="210" y1="210" x2="380" y2="230" stroke="#7FA8C9" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <line x1="210" y1="210" x2="100" y2="360" stroke="#7FA8C9" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <line x1="210" y1="210" x2="320" y2="360" stroke="#7FA8C9" stroke-width="1.5" stroke-dasharray="4 5"/>
+        </svg>
+        <div class="core-chip">RK<span>ENGINEER</span></div>
+        <div class="pin-badge" style="top:12%; left:6%;">C#</div>
+        <div class="pin-badge" style="top:12%; right:6%;">PY</div>
+        <div class="pin-badge" style="top:50%; left:-4%;">SQL</div>
+        <div class="pin-badge" style="top:50%; right:-4%;">JS</div>
+        <div class="pin-badge" style="bottom:6%; left:16%;">C</div>
+        <div class="pin-badge" style="bottom:6%; right:16%;">AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-tag">Sheet 02 / 07 — About</div>
+        <h2 class="section-title">Why <span style="color:var(--copper)">Me</span></h2>
+        <div class="about-text" style="margin-top:26px;">
+          <p>I'm a Computer Engineering student with a strong interest in software development, web technologies, and Artificial Intelligence. I enjoy learning new technologies, solving real-world problems, and building projects that strengthen both my technical and problem-solving skills.</p>
+          <p>My programming experience includes C, C#, Python, HTML, CSS, JavaScript, and SQL. Through academic projects and internships, I've worked on desktop applications, responsive websites, and database-driven systems — while building a solid understanding of clean code and OOP principles.</p>
+          <p>I'm always open to learning, collaborating, and connecting with people who care about building good software.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="spec-list">
+          <div class="spec-row"><div class="k">Education</div><div class="v">BSc Computer Engineering — BZU, Multan (2024–Present); FSc Pre-Engineering — City College Multan (2022–2024); Matriculation — GG Higher Secondary School (2020–2022)</div></div>
+          <div class="spec-row"><div class="k">Languages</div><div class="v">English (Professional working proficiency) · Urdu (Native / bilingual proficiency)</div></div>
+          <div class="spec-row"><div class="k">Internships</div><div class="v">3 completed — Decodelabs, Progree, CodeAlpha (Full Stack Development)</div></div>
+          <div class="spec-row"><div class="k">Foundation</div><div class="v">Object-Oriented Programming, CRUD systems, input validation, API integration</div></div>
+          <div class="spec-row"><div class="k">Focus Now</div><div class="v">Deepening full-stack development (frontend + backend) and exploring AI</div></div>
+          <div class="spec-row"><div class="k">Approach</div><div class="v">Continuous learning, consistency, and writing software that's both functional and user-friendly</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="skills" class="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Sheet 03 / 07 — Components</div>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <p class="section-sub">Core languages and concepts I've built hands-on experience with across academic projects and internships.</p>
+    </div>
+    <div class="skill-groups reveal">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-item">C</div>
+        <div class="skill-item">C#</div>
+        <div class="skill-item">Python</div>
+        <div class="skill-item">JavaScript</div>
+        <div class="skill-item">SQL</div>
+      </div>
+      <div class="skill-group">
+        <h4>Web</h4>
+        <div class="skill-item">HTML</div>
+        <div class="skill-item">CSS</div>
+        <div class="skill-item">Responsive Design</div>
+        <div class="skill-item">JavaScript (DOM)</div>
+      </div>
+      <div class="skill-group">
+        <h4>AI &amp; Data</h4>
+        <div class="skill-item">Artificial Intelligence (AI)</div>
+        <div class="skill-item">Generative AI</div>
+        <div class="skill-item">Prompt Engineering</div>
+        <div class="skill-item">Data Science</div>
+        <div class="skill-item">Data Analysis</div>
+        <div class="skill-item">Analytics</div>
+      </div>
+      <div class="skill-group">
+        <h4>Concepts</h4>
+        <div class="skill-item">OOP</div>
+        <div class="skill-item">Data Structures &amp; Algorithms</div>
+        <div class="skill-item">CRUD Operations</div>
+        <div class="skill-item">Input Validation</div>
+        <div class="skill-item">API Integration</div>
+        <div class="skill-item">Problem Solving</div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <div class="skill-item">Windows Forms</div>
+        <div class="skill-item">SQL LocalDB</div>
+        <div class="skill-item">Git &amp; Version Control</div>
+        <div class="skill-item">VS Code</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects" class="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Sheet 04 / 07 — Builds</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Nine academic and practice builds — spanning desktop apps, data structures, computer architecture, and full-stack web — from BZU coursework and CodeAlpha internship tasks.</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-01</span>
+          <span class="project-lang">C#</span>
+        </div>
+        <h3>Student Record System</h3>
+        <div class="pill-line"><b>Problem</b>Managing student records manually is slow and error-prone.</div>
+        <div class="pill-line"><b>Solution</b>A desktop app built with OOP principles and Windows Forms, using SQL LocalDB for storage — with GUI forms, full CRUD operations, and input validation to keep records accurate.</div>
+        <div class="proj-tags"><span>C#</span><span>OOP</span><span>Windows Forms</span><span>SQL LocalDB</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">BZU Coursework</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-02</span>
+          <span class="project-lang">C</span>
+        </div>
+        <h3>Bus Seat Management System</h3>
+        <div class="pill-line"><b>Problem</b>Booking, cancelling, and allocating bus seats needs a reliable, structured system.</div>
+        <div class="pill-line"><b>Solution</b>A console-based system handling seat booking, cancellation, and allocation — applying logical programming and data structures for efficient performance.</div>
+        <div class="proj-tags"><span>C</span><span>Data Structures</span><span>Console App</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">BZU Coursework</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-03</span>
+          <span class="project-lang">C++</span>
+        </div>
+        <h3>Complaint Management System <span style="font-weight:400;">(DSA Project)</span></h3>
+        <div class="pill-line"><b>Problem</b>Complaints need to be logged, tracked, and resolved in a structured way.</div>
+        <div class="pill-line"><b>Solution</b>A console-based system with backend logic built on Data Structures &amp; Algorithms, supporting adding, tracking, and resolving complaints.</div>
+        <div class="proj-tags"><span>C++</span><span>DSA</span><span>Console App</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">BZU Coursework</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-04</span>
+          <span class="project-lang">C++</span>
+        </div>
+        <h3>Smart Car Parking System <span style="font-weight:400;">(DSA Project)</span></h3>
+        <div class="pill-line"><b>Problem</b>Tracking available vs. occupied parking slots in real time is hard to manage manually.</div>
+        <div class="pill-line"><b>Solution</b>A console-based system using the Linear Search algorithm to manage and track parking slot availability, with backend logic built on DSA fundamentals.</div>
+        <div class="proj-tags"><span>C++</span><span>Linear Search</span><span>DSA</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">BZU Coursework</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-05</span>
+          <span class="project-lang">Python</span>
+        </div>
+        <h3>Weather Info System</h3>
+        <div class="pill-line"><b>Problem</b>Users need quick, accurate access to real-time weather data.</div>
+        <div class="pill-line"><b>Solution</b>A Python program that integrates weather APIs to fetch and display dynamic, real-time weather information.</div>
+        <div class="proj-tags"><span>Python</span><span>REST API</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">BZU Coursework</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-06</span>
+          <span class="project-lang">Assembly</span>
+        </div>
+        <h3>Working of Shift Register <span style="font-weight:400;">(CA&amp;O Project)</span></h3>
+        <div class="pill-line"><b>Problem</b>Understanding how data shifts and stores at the digital logic level.</div>
+        <div class="pill-line"><b>Solution</b>Studied and implemented SISO, SIPO, PISO, and PIPO shift registers, analyzing data shifting, storage, and digital logic circuit operations.</div>
+        <div class="proj-tags"><span>Assembly Language</span><span>Digital Logic</span><span>Computer Architecture</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">BZU Coursework</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-07</span>
+          <span class="project-lang">Web</span>
+        </div>
+        <h3>Interactive Dashboard</h3>
+        <div class="pill-line"><b>Problem</b>Raw data is hard to read without a clear, visual way to explore it.</div>
+        <div class="pill-line"><b>Solution</b>A dashboard with dynamic charts and data visualization, built with a responsive, user-friendly interface and JavaScript-driven data handling.</div>
+        <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Data Viz</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">CodeAlpha Internship</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-08</span>
+          <span class="project-lang">Web</span>
+        </div>
+        <h3>Responsive Portfolio Website</h3>
+        <div class="pill-line"><b>Problem</b>Needed a personal site to showcase skills and work professionally.</div>
+        <div class="pill-line"><b>Solution</b>A fully responsive portfolio with About, Skills, Projects, and Contact sections in a modern UI, optimized across screen sizes.</div>
+        <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive Design</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">CodeAlpha Internship</span>
+        </div>
+      </div>
+      <div class="project-card bracket reveal">
+        <div class="project-top">
+          <span class="project-code">PRJ-09</span>
+          <span class="project-lang">Web</span>
+        </div>
+        <h3>Secure E-commerce Website</h3>
+        <div class="pill-line"><b>Problem</b>Small storefronts need a clean, functional way to list and sell products online.</div>
+        <div class="pill-line"><b>Solution</b>A responsive e-commerce site with product listings and shopping features, built with clean, organized frontend components.</div>
+        <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>E-commerce</span></div>
+        <div class="proj-links">
+          <span style="color:var(--muted);">CodeAlpha Internship</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="certifications" class="certs grid-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Sheet 05 / 07 — Credentials</div>
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-sub">Self-driven learning across AI, programming fundamentals, and full-stack development — earned alongside coursework.</p>
+    </div>
+    <div class="cert-groups reveal">
+      <div class="cert-group">
+        <h4>AI &amp; Data</h4>
+        <div class="cert-item"><div class="cert-title">Google AI Professional Certificate</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI for App Building</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI for Data Analysis</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI for Content Creation</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI for Writing and Communication</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI for Research and Insights</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI for Brainstorming and Planning</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI Fundamentals</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">AI Masterclass: Zero to AI Power User</div><div class="cert-meta">AI SEEKHO.PK · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">Basics of Data Science</div><div class="cert-meta">UNIATHENA · JUN 2026</div></div>
+      </div>
+      <div class="cert-group">
+        <h4>Programming &amp; Tools</h4>
+        <div class="cert-item"><div class="cert-title">Introduction to Git and GitHub</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">Crash Course on Python</div><div class="cert-meta">GOOGLE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">Basics of Python</div><div class="cert-meta">UNIATHENA · JUN 2026</div></div>
+        <div class="cert-item"><div class="cert-title">Python Crash Course</div><div class="cert-meta">NUST (ONLINE) · AUG 2025</div></div>
+        <div class="cert-item"><div class="cert-title">C Programming Study</div><div class="cert-meta">STUDYTONIGHT · AUG 2025</div></div>
+        <div class="cert-item"><div class="cert-title">C++</div><div class="cert-meta">SOLOLEARN · FEB 2026</div></div>
+      </div>
+      <div class="cert-group">
+        <h4>Internships &amp; Recognition</h4>
+        <div class="cert-item"><div class="cert-title">Full Stack Development Virtual Internship</div><div class="cert-meta">PROGREE · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">Full Stack Development Virtual Internship</div><div class="cert-meta">DECODELABS · JUN 2026</div></div>
+        <div class="cert-item"><div class="cert-title">Full Stack Development Virtual Internship</div><div class="cert-meta">CODEALPHA · JUL 2026</div></div>
+        <div class="cert-item"><div class="cert-title">🏆 1 Year on Kaggle</div><div class="cert-meta">KAGGLE · AUG 2026</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="experience" class="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">Sheet 06 / 07 — Timeline</div>
+      <h2 class="section-title">Experience &amp; Education</h2>
+      <p class="section-sub">From Matriculation to Computer Engineering at BZU, plus three full-stack internships along the way.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-item">
+        <div class="t-node"></div>
+        <div class="t-head">
+          <h4>Matriculation <span class="t-badge">Education</span></h4>
+          <span class="t-date">2020 — 2022</span>
+        </div>
+        <div class="t-org">GG Higher Secondary School · Multan · Computer Science</div>
+      </div
+      <div class="t-item">
+        <div class="t-node"></div>
+        <div class="t-head">
+          <h4>FSc Pre-Engineering <span class="t-badge">Education</span></h4>
+          <span class="t-date">2022 — 2024</span>
+        </div>
+        <div class="t-org">City College Of Science and Commerce · Multan</div>
+      </div>
+      <div class="t-item">
+        <div class="t-node"></div>
+        <div class="t-head">
+          <h4>BSc Computer Engineering <span class="t-badge">Education</span></h4>
+          <span class="t-date">Sep 2024 — Present</span>
+        </div>
+        <div class="t-org">Bahauddin Zakariya University (BZU) · Multan, Punjab</div>
+        <div class="t-desc">Computer Engineering / Software Development. Developed multiple academic and personal software projects using C, C#, Python, HTML, CSS, JavaScript, and SQL — while building a foundation in OOP and clean coding practices.</div>
+        <div class="course-tags">
+          <span>Applied Physics</span><span>Calculus &amp; Analytical Geometry</span><span>Circuit Analysis</span>
+          <span>Complex Variables</span><span>Computer Architecture &amp; Organization</span><span>Computer Fundamentals (C)</span>
+          <span>Computer Programming</span><span>Data Structures &amp; Algorithms</span><span>Differential Equations</span>
+          <span>Digital Logic Design (DLD)</span><span>Discrete Structures</span><span>Electronic Devices &amp; Circuits (EDC)</span>
+          <span>Entrepreneurship</span><span>Linear Algebra</span><span>Object Oriented Programming (OOP)</span>
+          <span>Signals and Systems</span>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-node"></div>
+        <div class="t-head">
+          <h4>Full Stack Development Intern <span class="t-badge">Internship</span></h4>
+          <span class="t-date">Jun 2026 — Jul 2026</span>
+        </div>
+        <div class="t-org">Decodelabs · Remote</div>
+        <div class="t-desc">Built responsive, user-friendly web pages with HTML, CSS, and JavaScript. Strengthened frontend fundamentals, debugging, and modern development workflows.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-node"></div>
+        <div class="t-head">
+          <h4>Full Stack Development Intern <span class="t-badge">Internship</span></h4>
+          <span class="t-date">Jun 2026 — Jul 2026</span>
+        </div>
+        <div class="t-org">Progree · Remote</div>
+        <div class="t-desc">Developed responsive, interactive web pages and practiced clean coding standards, version control, and project organization on real tasks.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-node"></div>
+        <div class="t-head">
+          <h4>Full Stack Development Intern <span class="t-badge">Internship</span></h4>
+          <span class="t-date">Jun 2026 — Jul 2026</span>
+        </div>
+        <div class="t-org">CodeAlpha · Remote</div>
+        <div class="t-desc">Worked on practical web development tasks, improving problem-solving and debugging skills while enhancing understanding of modern web technologies.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="contact grid-bg">
+  <div class="wrap">
+    <div class="section-tag reveal">Sheet 07 / 07 — Contact</div>
+    <h2 class="reveal">Let's build something <span class="accent">real</span> together.</h2>
+    <p class="section-sub" style="margin:0 auto;">Open to internships, freelance front-end work, and collaboration on full-stack or AI projects.</p>
+    <div class="contact-links reveal">
+      <a class="clink" href="mailto:your.email@example.com">✉ your.email@example.com</a>
+      <a class="clink" href="https://www.linkedin.com/in/rukhsana-kanwal-8940843aa/" target="_blank">in LinkedIn</a>
+      <a class="clink" href="https://github.com/your-username" target="_blank">⌥ GitHub</a>
+    </div>
+  </div>
+</section>
+<footer>
+  © 2026 Rukhsana Kanwal — Multan, Punjab, Pakistan · Built with care.
+</footer>
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  items.forEach(i=>io.observe(i));
+  const style = document.createElement('style');
+  style.innerHTML = `@media (max-width:980px){ nav.links.mobile-open{ display:flex !important; flex-direction:column; position:absolute; top:68px; right:20px; background:var(--white); border:1px solid var(--line-soft); padding:10px; } }`;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
