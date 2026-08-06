@@ -67,7 +67,7 @@ Responsive Portfolio Homepage
 
 ## 💻 GitHub Repository
 
-Add your GitHub repository link here.
+https://github.com/rKanwal-codes/full-stack-learning-journey/blob/main/Day-3-Responsive-Design
 
 ---
 
