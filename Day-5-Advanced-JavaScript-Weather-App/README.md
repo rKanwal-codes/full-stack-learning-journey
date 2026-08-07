@@ -37,14 +37,33 @@ This project uses the **OpenWeather API** to fetch and display real-time weather
 - Event Handling
 - API Integration
 
+## 🖼️ Project Screenshots
+
+### 🌦️ Weather App – Desktop View
+
+<img width="958" height="502" alt="Screenshot 2026-08-08 002414" src="https://github.com/user-attachments/assets/dee3aec2-64b9-41e1-b714-9ad35d6c40c0" />
+
+
+### 📱 Weather App – Responsive View
+
+<img width="311" height="454" alt="image" src="https://github.com/user-attachments/assets/dbf8c97e-962e-428a-b4b0-6671eb2b17d6" />
+
+
+> 📌 **Note:** Add your screenshots inside a `screenshots` folder in your GitHub repository.
+
 ## 📂 Project Structure
 
-```
+```text
 Day-5-Advanced-JavaScript-Weather-App/
-│── index.html
-│── style.css
-│── script.js
-│── README.md
+│
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+│
+└── screenshots/
+    ├── weather-app.png
+    └── weather-responsive.png
 ```
 
 ## 🎯 Learning Outcome
@@ -55,6 +74,7 @@ Through this project, I learned how to:
 - Work with asynchronous JavaScript.
 - Update webpage content dynamically.
 - Build responsive and interactive web applications.
+- Integrate real-time API data into a frontend project.
 
 ## 👩‍💻 Author
 
