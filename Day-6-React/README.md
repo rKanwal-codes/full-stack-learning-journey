@@ -24,7 +24,8 @@ A fully functional **Student Dashboard** built with React — my first real Reac
 
 ## 📸 Preview
 
-*(Add your dashboard screenshot here)*
+<img width="1600" height="1328" alt="student_dashboard_collage" src="https://github.com/user-attachments/assets/35be3eb3-384e-47b0-b57a-a7d553384953" />
+
 
 ## 📂 Project Structure
 
