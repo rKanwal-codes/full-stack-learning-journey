@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "Student REST API - Day 7",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Students",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/api/students"
+      }
+    },
+    {
+      "name": "Get Student By ID",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/api/students/1"
+      }
+    },
+    {
+      "name": "Create Student",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Sara Ahmed\",\n  \"department\": \"Computer Engineering\",\n  \"semester\": 2\n}"
+        },
+        "url": "http://localhost:5000/api/students"
+      }
+    },
+    {
+      "name": "Update Student",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"semester\": 6\n}"
+        },
+        "url": "http://localhost:5000/api/students/1"
+      }
+    },
+    {
+      "name": "Delete Student",
+      "request": {
+        "method": "DELETE",
+        "url": "http://localhost:5000/api/students/1"
+      }
+    }
+  ]
+}
