@@ -79,11 +79,7 @@ http://localhost:5000
 
 ## 📸 Screenshots
 
-| GET All Students — 200 OK |
-|:---:|
-| ![GET all students response](./screenshots/api-preview.png) |
-
-![Uploading student_api_collage.png…]()
+<img width="1600" height="1218" alt="student_api_collage" src="https://github.com/user-attachments/assets/b5a4a36c-3ab8-4f36-b211-4a374b28b625" />
 
 
 ---
